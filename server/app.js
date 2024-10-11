@@ -22,13 +22,18 @@ app.get('/',(req,res)=>{
     res.end();
 })
 
-app.get('/stats',(req,res)=>
+app.get('/stats',async (req,res)=>
 {
     const coin = req.query.coin;
     if (coin) {
         if(coin==="bitcoin" || coin==="matic-network" || coin==="ethereum")
         {
-            
+            const data=await api_call();
+            res.type('json');
+            console.log(typeof(data));
+            console.log(data);
+            const to_client={ "price":data[coin].usd,"marketCap":data[coin].usd_market_cap,"24hChange":data[coin].usd_24h_change    }
+            res.send(to_client);
         }
         else
         res.send("please select one of bitcoin,matic-network,ethereum as a coin");

@@ -97,7 +97,7 @@ async function fetch_data(coin)
         const collection=db.collection(collectionName);
         const data = await collection.find().sort({id:-1}).limit(1);
         const res=await data.toArray();
-        console.log("sending", collectionName,"info to the user");
+        console.log("sending", collectionName,"info to the user from DB");
         return res;
     }
     catch(err)
