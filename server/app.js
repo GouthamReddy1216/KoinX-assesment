@@ -9,10 +9,10 @@ const app=express();
 const port=process.env.PORT || 3000 ;
 
 
-// cron.schedule('0 */2 * * *',async ()=>{
-//     const coin_data=await api_call();
-//     await insert_data(coin_data);
-// })
+cron.schedule('0 */2 * * *',async ()=>{
+    const coin_data=await api_call();
+    await insert_data(coin_data);
+})
 
 app.get('/',(req,res)=>{
     
